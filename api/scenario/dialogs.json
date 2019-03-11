@@ -1,0 +1,94 @@
+[
+  {
+    "trigger": {
+      "row": 0,
+      "column": 5
+    },
+    "messages": [
+      {
+        "speaker": "hero",
+        "message": "Great, yet another dark room. I'm pretty sure I'm lost."
+      },
+      {
+        "speaker": "vilain",
+        "message": "*sniff* I smell fresh meat"
+      },
+      {
+        "speaker": "hero",
+        "message": "What... What was that ?"
+      },
+      {
+        "speaker": "hero",
+        "message": "I barely made it out alive after that bat swarm, I should find something to heal myself"
+      }
+    ]
+  },
+  {
+    "trigger": {
+      "row": 3,
+      "column": 8
+    },
+    "messages": [
+      {
+        "speaker": "hero",
+        "message": "Looks like there's only one way out"
+      },
+      {
+        "speaker": "hero",
+        "message": "I'm going to have to face that thing"
+      },
+      {
+        "speaker": "vilain",
+        "message": "It's been a while since my axe tasted blood."
+      }
+    ]
+  },
+  {
+    "trigger": {
+      "row": 1,
+      "column": 1
+    },
+    "messages": [
+      {
+        "speaker": "hero",
+        "message": "Well, I played enough video games to know this is a health potion"
+      },
+      {
+        "speaker": "hero",
+        "message": "Bottoms up !"
+      }
+    ]
+  },
+  {
+    "trigger": {
+      "row": 4,
+      "column": 6
+    },
+    "messages": [
+      {
+        "speaker": "hero",
+        "message": "Cool ! I found something, let's see if I can open this old thing."
+      },
+      {
+        "speaker": "hero",
+        "message": "This should help me with whatever's out there."
+      }
+    ]
+  },
+  {
+    "trigger": {
+      "row": 3,
+      "column": 10
+    },
+    "messages": [
+      {
+        "speaker": "hero",
+        "message": "Take that Mr. Burgers."
+      },
+      {
+        "speaker": "hero",
+        "message": "Ba dum tssss."
+      }
+    ]
+  }
+]
