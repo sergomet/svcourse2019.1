@@ -1,0 +1,40 @@
+.row {
+  clear: both;
+}
+
+.tile {
+  width: 64px;
+  height: 64px;
+  /* display: inline-block; */
+  float: left;
+  background-image: url('assets/tiles/1.png');
+}
+
+.tile1 {
+  background-image: url('assets/tiles/1.png');
+  width: 70px;
+}
+
+.tile2 {
+  background-image: url('assets/tiles/2.png');
+}
+
+.tile3 {
+  background-image: url('assets/tiles/3.png');
+}
+
+.tile4 {
+  background-image: url('assets/tiles/4.png');
+}
+
+.tile5 {
+  background-image: url('assets/tiles/5.png');
+}
+
+#wallTop {
+  background-image: url(assets/walls/top-left.png), url(assets/walls/top-right.png),url(assets/walls/top.png);
+  background-position: top left, top right, top left;
+  background-repeat: no-repeat, no-repeat, repeat;
+  width: 416px;
+  height: 82px;
+}
