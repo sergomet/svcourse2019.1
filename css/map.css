@@ -1,0 +1,80 @@
+body {
+  padding: 30px;
+}
+
+.row {
+  clear: both;
+  background-image: url(assets/walls/left.png), url(assets/walls/right.png);
+  background-position: top left, top right;
+  background-repeat: no-repeat, no-repeat;
+  height: 64px;
+  padding-left: 18px;
+  padding-right: 18px; 
+}
+
+#map {
+  display: inline-block;
+}
+
+.tile {
+  width: 64px;
+  height: 64px;
+  float: left;
+}
+
+.tile1 {
+  background-image: url('assets/tiles/1.png');
+  width: 64px;
+}
+
+.tile2 {
+  background-image: url('assets/tiles/2.png');
+}
+
+.tile3 {
+  background-image: url('assets/tiles/3.png');
+}
+
+.tile4 {
+  background-image: url('assets/tiles/4.png');
+}
+
+.tile5 {
+  background-image: url('assets/tiles/5.png');
+}
+
+#wallTop {
+  background-image: url(assets/walls/top-left.png), url(assets/walls/top-right.png),url(assets/walls/top.png);
+  background-position: top left, top right, top left;
+  background-repeat: no-repeat, no-repeat, repeat;
+  height: 82px;
+}
+
+#wallBottom {
+  background-image: url(assets/walls/bottom-left.png), url(assets/walls/bottom-right.png),url(assets/walls/bottom.png);
+  background-position: top left, top right, top left;
+  background-repeat: no-repeat, no-repeat, repeat;
+  height: 16px;
+}
+
+.wall-left {
+  background-image: url('assets/walls/left.png');
+  float: left;
+  width: 18px;
+  height: 64px;
+}
+
+.wall-right {
+  background-image: url('assets/walls/right.png');
+  float: left;
+  width: 18px;
+  height: 64px;
+}
+
+.entrance {
+  background-image: url('assets/walls/entrance.png');
+  background-color: black;
+  height: 82px;
+  width: 104px;
+  margin: auto;
+}

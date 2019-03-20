@@ -1,0 +1,49 @@
+@keyframes hero-stand-by {
+  from {
+    background-image: url('assets/adventurer/standby-left.png');
+  }
+  to {
+    background-image: url('assets/adventurer/standby-right.png');
+  }
+}
+
+@keyframes bat {
+  0% {
+      background: url('assets/monsters/bat-1.png') no-repeat center;
+  }
+  25% {
+      background: url('assets/monsters/bat-2.png') no-repeat center;
+  }
+  50% {
+      background: url('assets/monsters/bat-3.png') no-repeat center;
+  }
+  75% {
+      background: url('assets/monsters/bat-4.png') no-repeat center;
+  }
+  100% {
+      background: url('assets/monsters/bat-5.png') no-repeat center;
+  }
+}
+
+#hero {
+  background-image: url('assets/adventurer/standby-left.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 64px;
+  height: 64px;
+  animation-name: hero-stand-by;
+  animation-duration: 1s;
+  animation-delay: 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+.bat-man {
+  width: 64px;
+  height: 64px;
+  animation-name: bat;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+
+}
