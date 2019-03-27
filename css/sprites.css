@@ -36,6 +36,7 @@
   animation-delay: 2s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+  position: absolute;
 }
 
 .bat-man {
@@ -45,5 +46,4 @@
   animation-duration: 0.8s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-
 }

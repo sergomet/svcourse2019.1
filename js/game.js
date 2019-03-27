@@ -1,32 +1,39 @@
-const string = 'numele meu este ';
-console.log(string);
+let movementLock = false;
 
-// let numeleMeu = 'alex';
-let number = 2;
-let number2 = 5;
-// console.log(string, number);
-// console.log(number * number2);
-// console.log(string + numeleMeu);
+$(document).keydown(function (event) {
 
-// console.log(number / number2);
-// console.log(number2 % number == 0);
-// console.log(`${numeleMeu} ${number}`);
-// console.log(Math.pow(number, number2))
+  if (movementLock === false) {
+    switch (event.which) {
+      case 37: // left
+        // stanga scad din left
+        console.log('left');
+        $("#hero").animate({ left: "-=64px" }, 1000);
+        break;
 
-// string = 'numele meu a fost';
-// console.log(string);
+      case 38: // up
+        // up scad din top
+        console.log('up');
+        $("#hero").animate({ top: "-=64px" }, 1000);
+        break;
 
-// const PI = 3.14;
+      case 39: // right
+        // dreapta maresc din left
+        $("#hero").animate({ left: "+=64px" }, 1000);
+        console.log('right');
+        break;
 
-let conditie = true;
-conditie = false;
+      case 40: // down
+        // jos maresc topul
+        movementLock = true;
+        $("#hero").animate({ top: "+=64px" }, 1000, function () {
+          // codul se executa cand se termina animatia
+          movementLock = false;
+        });
+        console.log('down');
+        break;
 
-conditie = number2 % number == 0;
-console.log(conditie);
-
-if (conditie === true) {
-  console.log('numarul e par');
-} else {
-  console.log('numarul e impar');
-}
-
+      default: console.log(event.which); // exit this handler for other keys
+    }
+  }
+  event.preventDefault(); // prevent the default action (scroll / move caret)
+});
