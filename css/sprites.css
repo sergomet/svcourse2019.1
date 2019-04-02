@@ -37,6 +37,8 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
   position: absolute;
+  top: 155px;
+  left: 55px;
 }
 
 .bat-man {

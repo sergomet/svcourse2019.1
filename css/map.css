@@ -1,6 +1,13 @@
 body {
   padding: 30px;
+  background-color: #2f2f2e;
+  font-family: 'Courier New', Courier, monospace;
 }
+
+#header {
+  color: greenyellow;
+}
+
 
 .row {
   clear: both;
@@ -41,6 +48,14 @@ body {
 
 .tile5 {
   background-image: url('assets/tiles/5.png');
+}
+
+.tile-ladder {
+  background-image: url('assets/tiles/ladder.png');
+}
+
+.tile-disabled {
+  background-image: url('assets/walls/column-double.png');
 }
 
 #wallTop {
