@@ -1,6 +1,9 @@
 [
   {
-    "position": [0, 5],
+    "position": [
+      0,
+      5
+    ],
     "stats": {
       "strength": 8,
       "vitality": 16,
@@ -10,7 +13,10 @@
     "id": "adventurer"
   },
   {
-    "position": [3, 7],
+    "position": [
+      3,
+      7
+    ],
     "stats": {
       "strength": 4,
       "vitality": 10,
@@ -25,12 +31,18 @@
       "vitality": 12,
       "healingPoints": 12
     },
-    "position": [1, 5],
+    "position": [
+      1,
+      5
+    ],
     "type": "bat",
     "id": "bat2"
   },
   {
-    "position": [3, 10],
+    "position": [
+      4,
+      10
+    ],
     "stats": {
       "strength": 10,
       "vitality": 20,
@@ -40,7 +52,10 @@
     "id": "minotaur"
   },
   {
-    "position": [1, 1],
+    "position": [
+      1,
+      1
+    ],
     "encounterMessage": "Gained 8 healing points",
     "stats": {
       "strength": 0,
@@ -51,7 +66,10 @@
     "id": "healthPotion1"
   },
   {
-    "position": [4, 6],
+    "position": [
+      4,
+      6
+    ],
     "encounterMessage": "It's a rusty old sword and a vest",
     "stats": {
       "strength": 12,

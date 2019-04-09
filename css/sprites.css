@@ -25,27 +25,64 @@
   }
 }
 
-#hero {
+@keyframes minotaur {
+  0% {
+      background: url('assets/monsters/minotaur-1.png') no-repeat center;
+  }
+  25% {
+      background: url('assets/monsters/minotaur-2.png') no-repeat center;
+  }
+  50% {
+      background: url('assets/monsters/minotaur-3.png') no-repeat center;
+  }
+  75% {
+      background: url('assets/monsters/minotaur-4.png') no-repeat center;
+  }
+  100% {
+      background: url('assets/monsters/minotaur-5.png') no-repeat center;
+  }
+}
+
+.sprite {
+  width: 64px;
+  height: 64px;
+}
+
+#adventurer {
   background-image: url('assets/adventurer/standby-left.png');
   background-repeat: no-repeat;
   background-position: center;
-  width: 64px;
-  height: 64px;
   animation-name: hero-stand-by;
   animation-duration: 1s;
   animation-delay: 2s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
   position: absolute;
-  top: 155px;
-  left: 55px;
+    /* top: 155px;
+    left: 55px; */
 }
 
-.bat-man {
-  width: 64px;
-  height: 64px;
+.bat {
   animation-name: bat;
   animation-duration: 0.8s;
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+.health-potion {
+  background: url('assets/items/health-potion.png') no-repeat center;
+}
+
+.chest-closed {
+  background: url('assets/items/chest-closed.png') no-repeat bottom center;
+}
+
+.chest-open {
+  background: url('assets/items/chest-open.png') no-repeat bottom center;
+}
+
+#minotaur {
+  animation-name: minotaur;
+  animation-duration: 0.8s;
+  animation-iteration-count: infinite;
 }

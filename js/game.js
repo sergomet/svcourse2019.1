@@ -8,28 +8,45 @@ const hero = {
 
 const map = {
   rows: 0,
-  columns: 0
+  columns: 0,
+  tiles: []
 };
-
 
 let movementLock = false;
 
+function generateSprites() {
+  $.ajax({
+    url: "api/scenario/sprites.json"
+  })
+    .done(function (spritesData) {
+      spritesData.forEach(function (sprite, spriteIndex) {
+        const spriteElement = $('<div></div>');
+        spriteElement.addClass('sprite');
+        spriteElement.addClass(sprite.type);
+        spriteElement.attr('id', sprite.id);
+        const row = sprite.position[0];
+        const column = sprite.position[1];
+        map.tiles[row][column].append(spriteElement);
+        if (sprite.type === 'hero') {
+          hero.position.row = row;
+          hero.position.column = column;
+        }
+      })
+    });
+}
 
 $.ajax({
   url: "api/scenario/map.json"
 })
   .done(function (data) {
-    // console.log(data);
-    // data.map.forEach(function (value, index) {
-    //   console.log(value, index);
-    // });
 
     map.rows = data.map.length - 1;
-    // map.columns = data.size.columns;
 
     const mapElement = $('#mapContent');
     const mapArrayLength = data.map.length;
+
     for (let rowIndex = 0; rowIndex < mapArrayLength; rowIndex++) {
+      map.tiles.push([]); //map.tiles[rowIndex] = [];
       const rowArray = data.map[rowIndex];
       const rowElement = $("<div class='row'></div>");
       mapElement.append(rowElement);
@@ -38,64 +55,74 @@ $.ajax({
         const tileElement = $("<div class='tile'></div>");
         tileElement.addClass(rowArray[columnIndex]);
         rowElement.append(tileElement);
+        map.tiles[rowIndex].push(tileElement);
       }
     }
+    generateSprites();
   });
 
-$(document).keydown(function (event) {
+/**
+ * @param {*} direction - are valoarea ori top ori left
+ * @param {*} step - are valoarea ori 1 ori -1
+ */
+function moveHero(direction, step) {
+  movementLock = true;
+  const numberOfPixels = 64;
+  let stepSign = '-';
+  if (step > 0) {
+    stepSign = '+';
+  }
 
+  // -=64px sau +=64px
+  const directionValue = stepSign + "=" + numberOfPixels + "px";
+
+  $("#adventurer").animate({ [direction]: directionValue }, 200, function () {
+    // codul se executa cand se termina animatia
+    movementLock = false;
+    updateCoordinates(direction, step);
+  });
+}
+
+function updateCoordinates(direction, step) {
+  let coordinateName;
+
+  if (direction === 'top') {
+    coordinateName = 'row';
+  } else {
+    coordinateName = 'column';
+  }
+
+  hero.position[coordinateName] += step;
+  $("#" + coordinateName).text(hero.position[coordinateName]);
+}
+
+function handleKeyboardPress(event) {
   if (movementLock === false) {
     switch (event.which) {
       case 37: // left
-        if (hero.position.column > 0) { //
-          movementLock = true;
-          // stanga scad din left
-          console.log('left');
-          $("#hero").animate({ left: "-=64px" }, 200, function () {
-            movementLock = false;
-            hero.position.column--;
-            $("#column").text(hero.position.column);
-          });
+        const leftElement = map.tiles[hero.position.row][hero.position.column - 1];
+        if (hero.position.column > 0 && leftElement.hasClass('tile-disabled') === false) { //
+          moveHero('left', -1);
         }
         break;
 
       case 38: // up
-        if (hero.position.row > 0) {
-          movementLock = true;
-          // up scad din top
-          console.log('up');
-          $("#hero").animate({ top: "-=64px" }, 200, function () {
-            movementLock = false;
-            hero.position.row--;
-            $("#row").text(hero.position.row);
-          });
+        const upperElement = map.tiles[hero.position.row - 1][hero.position.column];
+        if (hero.position.row > 0 && upperElement.hasClass('tile-disabled') === false) {
+          moveHero('top', -1);
         }
         break;
 
       case 39: // right
         if (hero.position.column < map.columns) {
-          movementLock = true;
-          // dreapta maresc din left
-          $("#hero").animate({ left: "+=64px" }, 200, function () {
-            movementLock = false;
-            hero.position.column++;
-            $("#column").text(hero.position.column);
-          });
-          console.log('right');
+          moveHero('left', 1);
         }
         break;
 
       case 40: // down
         // jos maresc topul
         if (hero.position.row < map.rows) {
-          movementLock = true;
-          $("#hero").animate({ top: "+=64px" }, 200, function () {
-            // codul se executa cand se termina animatia
-            movementLock = false;
-            hero.position.row++;
-            $("#row").text(hero.position.row);
-          });
-          console.log('down');
+          moveHero('top', 1);
         }
         break;
 
@@ -103,5 +130,6 @@ $(document).keydown(function (event) {
     }
   }
   event.preventDefault(); // prevent the default action (scroll / move caret)
-});
+}
 
+$(document).keydown(handleKeyboardPress);
