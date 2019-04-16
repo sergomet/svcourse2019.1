@@ -60,6 +60,20 @@
     "stats": {
       "strength": 0,
       "vitality": 0,
+      "healingPoints": 7
+    },
+    "type": "health-potion",
+    "id": "healthPotion1"
+  },
+  {
+    "position": [
+      3,
+      3
+    ],
+    "encounterMessage": "Gained 8 healing points",
+    "stats": {
+      "strength": 0,
+      "vitality": 0,
       "healingPoints": 8
     },
     "type": "health-potion",

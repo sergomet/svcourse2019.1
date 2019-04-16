@@ -1,18 +1,26 @@
-const hero = {
-  visible: true,
-  position: {
-    row: 0,
-    column: 0
-  }
-}
+let hero = {};
 
 const map = {
   rows: 0,
   columns: 0,
-  tiles: []
+  tiles: [],
+  sprites: []
 };
 
 let movementLock = false;
+
+const generateHpBar = function (sprite) {
+  const hpBar = $('<div></div>');
+  hpBar.addClass('hp-bar');
+  hpBar.text(sprite.stats.healingPoints + '/' + sprite.stats.vitality);
+  const hpPercentage = sprite.stats.healingPoints * 100 / sprite.stats.vitality;
+  const fullPercentage = 100 - hpPercentage;
+  hpBar.css({
+    background: `linear-gradient(90deg, rgba(255, 0, 43, 0.5) ${hpPercentage}%, rgba(0, 255, 255, 0) ${fullPercentage}%)`
+  });
+
+  return hpBar;
+}
 
 function generateSprites() {
   $.ajax({
@@ -24,12 +32,29 @@ function generateSprites() {
         spriteElement.addClass('sprite');
         spriteElement.addClass(sprite.type);
         spriteElement.attr('id', sprite.id);
+
+        if (sprite.type !== 'health-potion' && sprite.type !== 'chest-closed') {
+          const hpBar = generateHpBar(sprite);
+          spriteElement.append(hpBar);
+        }
+
         const row = sprite.position[0];
         const column = sprite.position[1];
+        if (map.sprites[row] === undefined) {
+          map.sprites[row] = [];
+        }
+
         map.tiles[row][column].append(spriteElement);
+        sprite.spriteElement = spriteElement;
+        map.sprites[row][column] = sprite;
+
         if (sprite.type === 'hero') {
+          hero = sprite;
+          hero.position = {};
           hero.position.row = row;
           hero.position.column = column;
+          $('#row').text(row);
+          $('#column').text(column);
         }
       })
     });
@@ -93,35 +118,57 @@ function updateCoordinates(direction, step) {
   }
 
   hero.position[coordinateName] += step;
+
   $("#" + coordinateName).text(hero.position[coordinateName]);
+
+  if (map.sprites[hero.position.row] && map.sprites[hero.position.row][hero.position.column]) {
+    if (map.sprites[hero.position.row][hero.position.column].type === 'health-potion') {
+      const healthPotion = map.sprites[hero.position.row][hero.position.column];
+      hero.stats.healingPoints += healthPotion.stats.healingPoints;
+      if (hero.stats.healingPoints > hero.stats.vitality) {
+        hero.stats.healingPoints = hero.stats.vitality;
+      }
+      const newHpBar = generateHpBar(hero);
+      hero.spriteElement.html(newHpBar);
+      healthPotion.spriteElement.remove();
+      delete map.sprites[hero.position.row][hero.position.column];
+    }
+  }
 }
 
 function handleKeyboardPress(event) {
   if (movementLock === false) {
     switch (event.which) {
       case 37: // left
-        const leftElement = map.tiles[hero.position.row][hero.position.column - 1];
-        if (hero.position.column > 0 && leftElement.hasClass('tile-disabled') === false) { //
-          moveHero('left', -1);
+        if (hero.position.column > 0) {
+          const leftElement = map.tiles[hero.position.row][hero.position.column - 1];
+          if (leftElement.hasClass('tile-disabled') === false) { //
+            moveHero('left', -1);
+          }
         }
         break;
 
       case 38: // up
-        const upperElement = map.tiles[hero.position.row - 1][hero.position.column];
-        if (hero.position.row > 0 && upperElement.hasClass('tile-disabled') === false) {
-          moveHero('top', -1);
+        if (hero.position.row >= 1) {
+          const upperElement = map.tiles[hero.position.row - 1][hero.position.column];
+
+          if (upperElement.hasClass('tile-disabled') === false) {
+            moveHero('top', -1);
+          }
         }
         break;
-
       case 39: // right
-        if (hero.position.column < map.columns) {
+        const rightElement = map.tiles[hero.position.row][hero.position.column + 1];
+        if (hero.position.column < map.columns && rightElement.hasClass('tile-disabled') === false) {
           moveHero('left', 1);
         }
         break;
 
       case 40: // down
         // jos maresc topul
-        if (hero.position.row < map.rows) {
+        const downElement = map.tiles[hero.position.row + 1][hero.position.column];
+
+        if (hero.position.row < map.rows && downElement.hasClass('tile-disabled') === false) {
           moveHero('top', 1);
         }
         break;

@@ -9,37 +9,37 @@
 
 @keyframes bat {
   0% {
-      background: url('assets/monsters/bat-1.png') no-repeat center;
+    background: url('assets/monsters/bat-1.png') no-repeat center;
   }
   25% {
-      background: url('assets/monsters/bat-2.png') no-repeat center;
+    background: url('assets/monsters/bat-2.png') no-repeat center;
   }
   50% {
-      background: url('assets/monsters/bat-3.png') no-repeat center;
+    background: url('assets/monsters/bat-3.png') no-repeat center;
   }
   75% {
-      background: url('assets/monsters/bat-4.png') no-repeat center;
+    background: url('assets/monsters/bat-4.png') no-repeat center;
   }
   100% {
-      background: url('assets/monsters/bat-5.png') no-repeat center;
+    background: url('assets/monsters/bat-5.png') no-repeat center;
   }
 }
 
 @keyframes minotaur {
   0% {
-      background: url('assets/monsters/minotaur-1.png') no-repeat center;
+    background: url('assets/monsters/minotaur-1.png') no-repeat center;
   }
   25% {
-      background: url('assets/monsters/minotaur-2.png') no-repeat center;
+    background: url('assets/monsters/minotaur-2.png') no-repeat center;
   }
   50% {
-      background: url('assets/monsters/minotaur-3.png') no-repeat center;
+    background: url('assets/monsters/minotaur-3.png') no-repeat center;
   }
   75% {
-      background: url('assets/monsters/minotaur-4.png') no-repeat center;
+    background: url('assets/monsters/minotaur-4.png') no-repeat center;
   }
   100% {
-      background: url('assets/monsters/minotaur-5.png') no-repeat center;
+    background: url('assets/monsters/minotaur-5.png') no-repeat center;
   }
 }
 
@@ -58,7 +58,7 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
   position: absolute;
-    /* top: 155px;
+  /* top: 155px;
     left: 55px; */
 }
 
@@ -85,4 +85,17 @@
   animation-name: minotaur;
   animation-duration: 0.8s;
   animation-iteration-count: infinite;
+}
+
+.hp-bar {
+  margin-top: -3px;
+  width: 40px;
+  height: 8px;
+  position: absolute;
+  margin-left: 12px;
+  color: white;
+  font-size: 8px;
+  font-weight: bolder;
+  text-align: center;
+  border: 1px solid rgba(255, 108, 108, 0.5);
 }
