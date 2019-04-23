@@ -7,6 +7,15 @@
   }
 }
 
+@keyframes hero-stand-by-sword {
+  from {
+    background-image: url('assets/adventurer/standby-left-sword.png');
+  }
+  to {
+    background-image: url('assets/adventurer/standby-right-sword.png');
+  }
+}
+
 @keyframes bat {
   0% {
     background: url('assets/monsters/bat-1.png') no-repeat center;
