@@ -1,18 +1,18 @@
 initMap(generateSprites);
 
 function updateHeroStats() {
-  $('#strength').text(hero.stats.strength);
-  $('#vitality').text(hero.stats.healingPoints + '/' + hero.stats.vitality);
+  $("#strength").text(hero.stats.strength);
+  $("#vitality").text(hero.stats.healingPoints + "/" + hero.stats.vitality);
   updateHeroHpBar();
 }
 
 function updateCoordinates(direction, step) {
   let coordinateName;
 
-  if (direction === 'top') {
-    coordinateName = 'row';
+  if (direction === "top") {
+    coordinateName = "row";
   } else {
-    coordinateName = 'column';
+    coordinateName = "column";
   }
 
   hero.position[coordinateName] += step;

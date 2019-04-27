@@ -8,7 +8,7 @@ const map = {
 function generateMap(mapData) {
   map.rows = mapData.map.length - 1;
 
-  const mapElement = $('#mapContent');
+  const mapElement = $("#mapContent");
   const mapArrayLength = mapData.map.length;
 
   for (let rowIndex = 0; rowIndex < mapArrayLength; rowIndex++) {
@@ -29,9 +29,8 @@ function generateMap(mapData) {
 function initMap(callback) {
   $.ajax({
     url: "api/scenario/map.json"
-  }).done(function (mapData) {
-
-    generateMap(mapData)
+  }).done(function(mapData) {
+    generateMap(mapData);
     callback();
   });
 }
