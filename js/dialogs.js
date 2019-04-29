@@ -17,19 +17,14 @@ function generateDialogs() {
 function handleDialog() {
   let { row, column } = hero.position;
 
-  if (
-    typeof dialogs[row] === undefined ||
-    typeof dialogs[row][column] === undefined
-  )
-    return;
+  console.log("handle dialogs");
+
+  if (dialogs[row] === undefined || dialogs[row][column] === undefined) return;
 
   let messages = dialogs[row][column];
 
-  if (messages === undefined) return;
-
-  console.dir(messages);
-
   if (messages.length === 0) {
+    console.log("dialog completed");
     movementLock = false;
     return;
   }
