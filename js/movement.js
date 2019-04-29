@@ -12,6 +12,7 @@ function moveHero(direction, step) {
     stepSign = "+";
   }
 
+
   // -=64px sau +=64px
   const directionValue = stepSign + "=" + numberOfPixels + "px";
 
@@ -20,6 +21,8 @@ function moveHero(direction, step) {
     movementLock = false;
     updateCoordinates(direction, step);
     handleSpotLight();
+    handleDialog();
+
   });
 }
 
@@ -44,6 +47,9 @@ function handleSpotLight() {
 }
 
 function handleKeyboardPress(event) {
+
+
+
   if (movementLock === false) {
     switch (event.which) {
       case 37: // left

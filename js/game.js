@@ -1,4 +1,4 @@
-initMap(generateSprites);
+initMap(generateDialogs);
 
 function updateHeroStats() {
   $("#strength").text(hero.stats.strength);

@@ -24,52 +24,53 @@ function generateSprites() {
     url: "api/scenario/sprites.json"
   }).done(function(spritesData) {
     spritesData.forEach(function(sprite, spriteIndex) {
-      const spriteElement = $("<div></div>");
-      spriteElement.addClass("sprite");
-      spriteElement.addClass(sprite.type);
-      spriteElement.attr("id", sprite.id);
-
-      if (sprite.type !== "health-potion" && sprite.type !== "chest-closed") {
-        const hpBar = generateHpBar(sprite);
-        spriteElement.append(hpBar);
-      }
-
-      const row = sprite.position[0];
-      const column = sprite.position[1];
-      if (map.sprites[row] === undefined) {
-        map.sprites[row] = [];
-      }
-
-      sprite.spriteElement = spriteElement;
-
-      if (sprite.type === "hero") {
-        hero = sprite;
-        hero.position = {};
-        hero.position.row = row;
-        hero.position.column = column;
-
-        // put the hero to the start point
-        // with an awesome formula ;)
-        spriteElement.css({
-          left: 64 * (column + 1) - 10,
-          top: 100 + 64 * (row + 1)
-        });
-
-        $("#row").text(row);
-        $("#column").text(column);
-        $("#mapHeader").append(spriteElement);
-        updateHeroStats();
-        handleSpotLight();
-
-        let dialog = $("<div/>", {
-          class: "speech-bubble",
-          text: "Serios ba? Esti o vaca nebuna?"
-        });
-        spriteElement.append(dialog);
-      } else {
-        map.tiles[row][column].append(spriteElement);
-        map.sprites[row][column] = sprite;
-      }
+      generateSprite(sprite,spriteIndex);
     });
+
   });
+}
+
+function generateSprite(sprite,spriteIndex) {
+  const spriteElement = $("<div></div>");
+  spriteElement.addClass("sprite");
+  spriteElement.addClass(sprite.type);
+  spriteElement.attr("id", sprite.id);
+
+  if (sprite.type !== "health-potion" && sprite.type !== "chest-closed") {
+    const hpBar = generateHpBar(sprite);
+    spriteElement.append(hpBar);
+  }
+
+  const row = sprite.position[0];
+  const column = sprite.position[1];
+  if (map.sprites[row] === undefined) {
+    map.sprites[row] = [];
+  }
+
+  sprite.spriteElement = spriteElement;
+
+  if (sprite.type === "hero") {
+    hero = sprite;
+    hero.position = {};
+    hero.position.row = row;
+    hero.position.column = column;
+
+    // put the hero to the start point
+    // with an awesome formula ;)
+    spriteElement.css({
+      left: 64 * (column + 1) - 10,
+      top: 100 + 64 * (row + 1)
+    });
+
+    $("#row").text(row);
+    $("#column").text(column);
+    $("#mapHeader").append(spriteElement);
+    updateHeroStats();
+    handleSpotLight();
+    handleDialog();
+
+  } else {
+    map.tiles[row][column].append(spriteElement);
+  }
+  map.sprites[row][column] = sprite;  
 }
