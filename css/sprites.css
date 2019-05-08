@@ -67,8 +67,7 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
   position: absolute;
-  /* top: 155px;
-    left: 55px; */
+  z-index: 999;
 }
 
 .bat {
@@ -107,4 +106,28 @@
   font-weight: bolder;
   text-align: center;
   border: 1px solid rgba(255, 108, 108, 0.5);
+}
+
+.speech-bubble {
+  position: absolute;
+  background: #ffffff;
+  border-radius: .4em;
+  color: black;
+  padding: 10px;
+  max-width: 200px;
+}
+
+.speech-bubble:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 20px solid transparent;
+  border-right-color: #ffffff;
+  border-left: 0;
+  border-bottom: 0;
+  margin-top: -10px;
+  margin-left: -20px;
 }

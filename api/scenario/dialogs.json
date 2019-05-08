@@ -6,39 +6,39 @@
     },
     "messages": [
       {
-        "speaker": "hero",
+        "speaker": "adventurer",
         "message": "Great, yet another dark room. I'm pretty sure I'm lost."
       },
       {
-        "speaker": "vilain",
+        "speaker": "minotaur",
         "message": "*sniff* I smell fresh meat"
       },
       {
-        "speaker": "hero",
+        "speaker": "adventurer",
         "message": "What... What was that ?"
       },
       {
-        "speaker": "hero",
+        "speaker": "adventurer",
         "message": "I barely made it out alive after that bat swarm, I should find something to heal myself"
       }
     ]
   },
   {
     "trigger": {
-      "row": 3,
+      "row": 4,
       "column": 8
     },
     "messages": [
       {
-        "speaker": "hero",
+        "speaker": "adventurer",
         "message": "Looks like there's only one way out"
       },
       {
-        "speaker": "hero",
+        "speaker": "adventurer",
         "message": "I'm going to have to face that thing"
       },
       {
-        "speaker": "vilain",
+        "speaker": "minotaur",
         "message": "It's been a while since my axe tasted blood."
       }
     ]
@@ -50,11 +50,11 @@
     },
     "messages": [
       {
-        "speaker": "hero",
+        "speaker": "adventurer",
         "message": "Well, I played enough video games to know this is a health potion"
       },
       {
-        "speaker": "hero",
+        "speaker": "adventurer",
         "message": "Bottoms up !"
       }
     ]
@@ -66,11 +66,11 @@
     },
     "messages": [
       {
-        "speaker": "hero",
+        "speaker": "adventurer",
         "message": "Cool ! I found something, let's see if I can open this old thing."
       },
       {
-        "speaker": "hero",
+        "speaker": "adventurer",
         "message": "This should help me with whatever's out there."
       }
     ]
@@ -82,11 +82,11 @@
     },
     "messages": [
       {
-        "speaker": "hero",
+        "speaker": "adventurer",
         "message": "Take that Mr. Burgers."
       },
       {
-        "speaker": "hero",
+        "speaker": "adventurer",
         "message": "Ba dum tssss."
       }
     ]

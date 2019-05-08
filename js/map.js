@@ -35,3 +35,22 @@ function initMap(callback) {
     callback();
   });
 }
+
+function getTileOpacity(hero, tileRow, tileColumn) {
+
+  const { row, column } = hero.position;
+  // const row = hero.position.row
+  // const column = hero.position.column
+
+  const dinstance = Math.abs(tileRow - row) + Math.abs(tileColumn - column);
+  const opacity = 1 - dinstance * 0.2;
+  return opacity;
+}
+
+function updateMapOpacity(hero) {
+  map.tiles.forEach((tileRow, row) => {
+    tileRow.forEach((tile, column) => {
+      tile.css({ opacity: getTileOpacity(hero, row, column) });
+    });
+  });
+}

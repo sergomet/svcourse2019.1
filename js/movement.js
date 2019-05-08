@@ -19,48 +19,60 @@ function moveHero(direction, step) {
     // codul se executa cand se termina animatia
     movementLock = false;
     updateCoordinates(direction, step);
+    updateMapOpacity(hero);
+    showNextDialogIfAvailable(hero.position.row, hero.position.column);
   });
 }
 
+function canHeroMove(nextElement) {
+  if (movementLock === true) {
+    return false;
+  }
+
+  if (!nextElement || nextElement.hasClass('tile-disabled') === false) {
+    return false;
+  }
+
+  return true;
+}
+
 function handleKeyboardPress(event) {
-  if (movementLock === false) {
-    switch (event.which) {
-      case 37: // left
-        if (hero.position.column > 0) {
-          const leftElement = map.tiles[hero.position.row][hero.position.column - 1];
-          if (leftElement.hasClass('tile-disabled') === false) { //
-            moveHero('left', -1);
-          }
+  switch (event.which) {
+    case 32: // space
+      movementLock = false;
+      showNextDialogIfAvailable(hero.position.row, hero.position.column);
+      break;
+    case 37: // left
+      if (hero.position.column > 0) {
+        if (canHeroMove(map.tiles[hero.position.row][hero.position.column - 1])) {
+          moveHero('left', -1);
         }
-        break;
+      }
+      break;
 
-      case 38: // up
-        if (hero.position.row >= 1) {
-          const upperElement = map.tiles[hero.position.row - 1][hero.position.column];
-
-          if (upperElement.hasClass('tile-disabled') === false) {
-            moveHero('top', -1);
-          }
+    case 38: // up
+      if (hero.position.row >= 1) {
+        if (canHeroMove(map.tiles[hero.position.row - 1][hero.position.column])) {
+          moveHero('top', -1);
         }
-        break;
-      case 39: // right
-        const rightElement = map.tiles[hero.position.row][hero.position.column + 1];
-        if (hero.position.column < map.columns && rightElement.hasClass('tile-disabled') === false) {
-          moveHero('left', 1);
-        }
-        break;
+      }
+      break;
+    case 39: // right
+      if (map.tiles[hero.position.row][hero.position.column + 1] &&
+        canHeroMove(map.tiles[hero.position.row][hero.position.column + 1])) {
+        moveHero('left', 1);
+      }
+      break;
 
-      case 40: // down
-        // jos maresc topul
-        const downElement = map.tiles[hero.position.row + 1][hero.position.column];
+    case 40: // down
+      // jos maresc topul
+      if (map.tiles[hero.position.row + 1] &&
+        canHeroMove(map.tiles[hero.position.row + 1][hero.position.column])) {
+        moveHero('top', 1);
+      }
+      break;
 
-        if (hero.position.row < map.rows && downElement.hasClass('tile-disabled') === false) {
-          moveHero('top', 1);
-        }
-        break;
-
-      default: console.log(event.which); // exit this handler for other keys
-    }
+    default: console.log(event.which); // exit this handler for other keys
   }
   event.preventDefault(); // prevent the default action (scroll / move caret)
 }

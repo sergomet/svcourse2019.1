@@ -39,7 +39,6 @@ function generateSprites() {
         map.sprites[row] = [];
       }
 
-      map.tiles[row][column].append(spriteElement);
       sprite.spriteElement = spriteElement;
       map.sprites[row][column] = sprite;
 
@@ -51,7 +50,15 @@ function generateSprites() {
         $('#row').text(row);
         $('#column').text(column);
         updateHeroStats();
+        updateMapOpacity(hero);
+        $('body').prepend(hero.spriteElement);
+        const { top, left } = map.tiles[0][5][0].getBoundingClientRect();
+        $('#adventurer').css({ top, left });
+        // {left: left, top: top}
+      } else {
+        map.tiles[row][column].append(spriteElement);
       }
     })
+    showNextDialogIfAvailable(hero.position.row, hero.position.column);
   });
 }

@@ -8,6 +8,9 @@ body {
   color: greenyellow;
 }
 
+#mapContent {
+  background: black;
+}
 
 .row {
   clear: both;
@@ -16,7 +19,7 @@ body {
   background-repeat: no-repeat, no-repeat;
   height: 64px;
   padding-left: 18px;
-  padding-right: 18px; 
+  padding-right: 18px;
 }
 
 #map {
@@ -59,14 +62,14 @@ body {
 }
 
 #wallTop {
-  background-image: url(assets/walls/top-left.png), url(assets/walls/top-right.png),url(assets/walls/top.png);
+  background-image: url(assets/walls/top-left.png), url(assets/walls/top-right.png), url(assets/walls/top.png);
   background-position: top left, top right, top left;
   background-repeat: no-repeat, no-repeat, repeat;
   height: 82px;
 }
 
 #wallBottom {
-  background-image: url(assets/walls/bottom-left.png), url(assets/walls/bottom-right.png),url(assets/walls/bottom.png);
+  background-image: url(assets/walls/bottom-left.png), url(assets/walls/bottom-right.png), url(assets/walls/bottom.png);
   background-position: top left, top right, top left;
   background-repeat: no-repeat, no-repeat, repeat;
   height: 16px;
