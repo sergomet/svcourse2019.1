@@ -29,7 +29,7 @@ function canHeroMove(nextElement) {
     return false;
   }
 
-  if (!nextElement || nextElement.hasClass('tile-disabled') === false) {
+  if (!nextElement || nextElement.hasClass('tile-disabled')) {
     return false;
   }
 
