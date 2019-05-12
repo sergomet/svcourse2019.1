@@ -28,7 +28,7 @@ class Map {
   }
 
   getTileOpacity(hero, tileRow, tileColumn) {
-    const { row, column } = hero.position;
+    const { row, column } = hero;
     const dinstance = Math.abs(tileRow - row) + Math.abs(tileColumn - column);
     const opacity = 1 - dinstance * 0.2;
     return opacity;

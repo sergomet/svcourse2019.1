@@ -1,82 +1,40 @@
-let movementLock = false;
-
-/**
- * @param {*} direction - are valoarea ori top ori left
- * @param {*} step - are valoarea ori 1 ori -1
- */
-function moveHero(direction, step) {
-  movementLock = true;
-  const numberOfPixels = 64;
-  let stepSign = "-";
-  if (step > 0) {
-    stepSign = "+";
-  }
-
-  // -=64px sau +=64px
-  const directionValue = stepSign + "=" + numberOfPixels + "px";
-
-  $("#adventurer").animate({ [direction]: directionValue }, 200, function() {
-    // codul se executa cand se termina animatia
-    movementLock = false;
-    updateCoordinates(direction, step);
-    map.updateMapOpacity(hero);
-    showNextDialogIfAvailable(hero.position.row, hero.position.column);
-  });
-}
-
-function canHeroMove(nextElement) {
-  if (movementLock === true) {
-    return false;
-  }
-
-  if (!nextElement || nextElement.hasClass("tile-disabled")) {
-    return false;
-  }
-
-  return true;
-}
-
 function handleKeyboardPress(event) {
   switch (event.which) {
     case 32: // space
-      movementLock = false;
-      showNextDialogIfAvailable(hero.position.row, hero.position.column);
+      hero.movementLock = false;
+      dialogs.showNextIfAvailable(hero.row, hero.column);
       break;
     case 37: // left
-      if (hero.position.column > 0) {
-        if (
-          canHeroMove(map.tiles[hero.position.row][hero.position.column - 1])
-        ) {
-          moveHero("left", -1);
+      if (hero.column > 0) {
+        if (hero.canMove(map.tiles[hero.row][hero.column - 1])) {
+          hero.move("left", -1);
         }
       }
       break;
 
     case 38: // up
-      if (hero.position.row >= 1) {
-        if (
-          canHeroMove(map.tiles[hero.position.row - 1][hero.position.column])
-        ) {
-          moveHero("top", -1);
+      if (hero.row >= 1) {
+        if (hero.canMove(map.tiles[hero.row - 1][hero.column])) {
+          hero.move("top", -1);
         }
       }
       break;
     case 39: // right
       if (
-        map.tiles[hero.position.row][hero.position.column + 1] &&
-        canHeroMove(map.tiles[hero.position.row][hero.position.column + 1])
+        map.tiles[hero.row][hero.column + 1] &&
+        hero.canMove(map.tiles[hero.row][hero.column + 1])
       ) {
-        moveHero("left", 1);
+        hero.move("left", 1);
       }
       break;
 
     case 40: // down
       // jos maresc topul
       if (
-        map.tiles[hero.position.row + 1] &&
-        canHeroMove(map.tiles[hero.position.row + 1][hero.position.column])
+        map.tiles[hero.row + 1] &&
+        hero.canMove(map.tiles[hero.row + 1][hero.column])
       ) {
-        moveHero("top", 1);
+        hero.move("top", 1);
       }
       break;
 

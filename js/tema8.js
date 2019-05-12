@@ -4,8 +4,10 @@
 // vreau sa vad ca, clasele au proprietati si metode
 
 class Shape {
-  sides = [];
-  category = null;
+  constructor() {
+    this.sides = [];
+    this.category = null;
+  }
 
   detectCategory() {
     if (this.sides.length !== 3) {
@@ -52,6 +54,9 @@ class Triangle extends Shape {
   getArea() {
     const category = this.category;
     let aria = 0;
+
+    // todo
+    // apply area calc formula by category
     // if (category === "isoscel") {
     aria = (Math.pow(this.sides[0], 2) * Math.sqrt(3)) / 4;
     // }
@@ -60,22 +65,23 @@ class Triangle extends Shape {
   }
 }
 
-let shape1 = new Triangle(2, 2, 2);
-console.log(shape1.name());
-console.log(shape1.getPerimeter());
-console.log(shape1.getArea());
+let shape;
+shape = new Triangle(2, 2, 2);
+console.log(shape.name());
+console.log(shape.getPerimeter());
+console.log(shape.getArea());
 
-let shape2 = new Triangle(2, 2, 1);
-console.log(shape2.getCategory());
-console.log(shape2.getPerimeter());
-console.log(shape2.getArea());
+shape = new Triangle(2, 2, 1);
+console.log(shape.getCategory());
+console.log(shape.getPerimeter());
+console.log(shape.getArea());
 
-let shape3 = new Triangle(2, 2, 1);
-console.log(shape3.getCategory());
-console.log(shape3.getPerimeter());
-console.log(shape3.getArea());
+shape = new Triangle(2, 2, 1);
+console.log(shape.getCategory());
+console.log(shape.getPerimeter());
+console.log(shape.getArea());
 
-let shape4 = new Triangle(1, 2, 3);
-console.log(shape4.getCategory());
-console.log(shape4.getPerimeter());
-console.log(shape4.getArea());
+shape = new Triangle(1, 2, 3);
+console.log(shape.getCategory());
+console.log(shape.getPerimeter());
+console.log(shape.getArea());
